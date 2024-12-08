@@ -20,11 +20,15 @@ const AppContextProvider = (props) => {
         return dateArray[0]+" "+months[Number(dateArray[1])]+" "+dateArray[2]
     }
 
+    const currency = '$'
+
     const value = {
         calculateAge,
-        slotDateFormat, 
+        slotDateFormat,
         currency
     }
+
+    
 
     return (
         <AppContext.Provider value={value}>

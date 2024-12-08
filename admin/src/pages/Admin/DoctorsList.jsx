@@ -1,10 +1,13 @@
 import React, { useContext } from 'react'
 import { AdminContext } from '../../context/AdminContext'
 import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const DoctorsList = () => {
 
-  const { doctors, aToken, getAllDoctors, changeAvailability } = useContext(AdminContext)
+  const { doctors, aToken, getAllDoctors, changeAvailability, deleteDoctor, setSelectedDoctor } = useContext(AdminContext)
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (aToken) {
@@ -26,6 +29,10 @@ const DoctorsList = () => {
                 <div className='mt-2 flex items-center gap-1 text-sm'>
                   <input onChange={()=> changeAvailability(item._id)} type="checkbox" checked={item.available} />
                   <p>Available</p>
+               </div>
+                <div className='mt-2 flex items-center gap-1 text-sm'>
+                  <button onClick={()=> {setSelectedDoctor(item);navigate('../edit-doctor')}} className='bg-grey-900 text-black px-4 py-1 hover:text-white rounded-lg hover:bg-primary'>Edit</button>
+                  <button onClick={() => {deleteDoctor(item.email)}} className='bg-grey-900 text-black ml-12 px-4 py-1 hover:text-white rounded-lg hover:bg-red-500'>Delete</button>
                 </div>
               </div>
             </div>

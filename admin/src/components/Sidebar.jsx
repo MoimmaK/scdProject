@@ -30,9 +30,29 @@ const Sidebar = () => {
                         <p className='hidden md:block'>Add Doctor</p>
                     </NavLink>
 
+                    <NavLink to={'/edit-doctor'} className={({isActive})=> `flex items-center gap-3 py-3.5 md:px-9 md:min-w-72 cursor-pointer ${isActive ? 'bg-[#f2f3ff] border-r-4 border-primary' : ''}`}>
+                        <img src={assets.list_icon} alt="" />
+                        <p className='hidden md:block'>Edit Doctor</p>
+                    </NavLink>
+
                     <NavLink to={'/doctor-list'} className={({isActive})=> `flex items-center gap-3 py-3.5 md:px-9 md:min-w-72 cursor-pointer ${isActive ? 'bg-[#f2f3ff] border-r-4 border-primary' : ''}`}>
                         <img src={assets.people_icon} alt="" />
                         <p className='hidden md:block'>Doctors List</p>
+                    </NavLink>
+
+                    <NavLink to={'/add-patient'} className={({isActive})=> `flex items-center gap-3 py-3.5 md:px-9 md:min-w-72 cursor-pointer ${isActive ? 'bg-[#f2f3ff] border-r-4 border-primary' : ''}`}>
+                        <img src={assets.add_icon} alt="" />
+                        <p className='hidden md:block'>Add Patient</p>
+                    </NavLink>
+
+                    <NavLink to={'/edit-patient'} className={({isActive})=> `flex items-center gap-3 py-3.5 md:px-9 md:min-w-72 cursor-pointer ${isActive ? 'bg-[#f2f3ff] border-r-4 border-primary' : ''}`}>
+                        <img src={assets.list_icon} alt="" />
+                        <p className='hidden md:block'>Edit Patient</p>
+                    </NavLink>
+
+                    <NavLink to={'/patient-list'} className={({isActive})=> `flex items-center gap-3 py-3.5 md:px-9 md:min-w-72 cursor-pointer ${isActive ? 'bg-[#f2f3ff] border-r-4 border-primary' : ''}`}>
+                        <img src={assets.people_icon} alt="" />
+                        <p className='hidden md:block'>Patients List</p>
                     </NavLink>
 
                 </ul>

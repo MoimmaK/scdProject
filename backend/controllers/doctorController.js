@@ -112,5 +112,20 @@ const appointmentCancel = async (req,res) => {
     }
 }
 
+//api to get dashboard data for doctor panel
+
+const doctorDashboard = async(req,res) =>{
+    try {
+        
+        const {docId}=req.body
+        const appointments=await appointmentModel.find({docId})
+        
+
+    } catch (error) {
+        console.log(error)
+        res.json({success:false, message:error.message})
+    }
+}
+
 
 export {changeAvailability,doctorList,loginDoctor,appointmentsDoctor,appointmentCancel,appointmentComplete}

@@ -1,0 +1,38 @@
+name: Build and Deploy to Minikube
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-deploy:
+    runs-on: self-hosted
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Use Minikube's Docker Daemon
+      run: |
+        echo "Using Minikube Docker daemon"
+        eval $(minikube docker-env)
+
+    - name: Build Docker images
+      run: |
+        docker build -t m33na04/frontend:latest ./frontend
+        docker build -t m33na04/backend:latest ./backend
+        docker build -t m33na04/admin:latest ./admin
+
+    - name: Login to Docker Hub
+      run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+    - name: Push Docker images to Docker Hub
+      run: |
+        docker push m33na04/frontend:latest
+        docker push m33na04/backend:latest
+        docker push m33na04/admin:latest
+
+    - name: Apply Kubernetes Manifests
+      run: |
+        kubectl apply -f k8s/

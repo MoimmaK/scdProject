@@ -30,4 +30,7 @@ res.send('API WORKING')
 
 });
 
+console.log("MONGO_URI:", process.env.MONGO_URI);
+
+
 app.listen(port,()=>console.log("Server Started",port))
